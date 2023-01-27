@@ -1,13 +1,9 @@
 #!/bin/bash
 
-hello(){
-	echo var=$(./Ex2/hello.exe)
-	echo "$var" > ./Ex2/file$i.txt
-}
 
-for i in {1..2}
+for i in {1..10}
 do
-	hello
+	./Ex2/hello.exe $i > output_${i} &
 done
 
 wait
