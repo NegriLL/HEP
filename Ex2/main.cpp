@@ -1,12 +1,8 @@
 #include <iostream>
-
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
-    int number = 0;
-    cout << "Write an integer and press enter: ";
-    cin >> number;
-    cout << "Hello World " << number<< endl;
+    cout << "Hello World " << argv[1] << endl;
     return 0;
 }

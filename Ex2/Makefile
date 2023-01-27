@@ -1,1 +1,1 @@
-g++ -o hello main.cpp
+g++ -o ./Ex2/hello.exe ./Ex2/main.cpp
