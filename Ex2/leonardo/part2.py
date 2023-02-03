@@ -14,4 +14,4 @@ with open(path) as f:
     values = f.readline().split('|')
     totrecorded = float(values[-2].strip())
 
-    print("{:.1f} fb^-1".format(totrecorded*1000))
+    print("{:.1f} fb^-1".format(totrecorded*0.001))
