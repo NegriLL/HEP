@@ -1,7 +1,7 @@
 #ifndef SIMULATED_H
 #define SIMULATED_H
 
-#include <fourmoment.h>
+#include "fourmoment.h"
 
 class simulated : public fourMoment
 {

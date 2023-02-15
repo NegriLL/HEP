@@ -1,6 +1,6 @@
 #include <iostream>
-#include <fourmoment.h>
-#include <simulated.h>
+#include "fourmoment.h"
+#include "simulated.h"
 
 using namespace std;
 
