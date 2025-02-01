@@ -1,0 +1,18 @@
+#!/usr/bin/tcsh
+
+setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH":.
+
+echo "Testing incorrect number of parameters"
+./test 1
+echo
+
+echo "Testing correct parameters"
+./test 3 4 5
+echo
+
+echo "Testing no parameters"
+./test
+echo
+
+echo "testing weird vector values"
+./test 1 1 0.5
