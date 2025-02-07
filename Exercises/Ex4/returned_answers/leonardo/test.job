@@ -1,0 +1,19 @@
+#!/usr/bin/tcsh
+
+setenv LD_LIBRARY_PATH .
+
+echo "Testing incorrect number of parameters"
+./test 1
+echo
+
+echo "Testing correct parameters"
+./test 1 3 4 5 Pion Proton
+echo
+
+echo "Testing correct parameters again"
+./test 1 3 4 5 Electron Neutron
+echo
+
+echo "Testing no parameters"
+./test
+echo
