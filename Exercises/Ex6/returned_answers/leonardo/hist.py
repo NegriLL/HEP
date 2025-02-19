@@ -1,33 +1,31 @@
 import ROOT
 import random
+from array import array
 
 file = ROOT.TFile("random_numbers.root", "RECREATE")
 tree = ROOT.TTree("tree", "Random Numbers")
 
-x = ROOT.std.vector('double')()
-tree.Branch("x", value)
+x = array('d', [0])
+tree.Branch("x", x, 'x/D')
 
 for i in range(1000):
-    x.clear()
-    x.push_back(random.gauss(0,1))
+    x[0] = random.gauss(0,1)
     tree.Fill()
     
 tree.Write()
-tree.Close()
+file.Close()
 
 file = ROOT.TFile("random_numbers.root", "READ")
 tree = file.Get("tree")
 
 hist = ROOT.TH1F("hist", "Histogram", 100, -5, 5)
+hist.SetLineColor(ROOT.kBlack);
+hist.SetFillColor(ROOT.kYellow);
+hist.SetLineWidth(4);
 
 canvas = ROOT.TCanvas("canvas", "Histogram", 800, 600)
-
 tree.Draw("x>>hist")
 
-gausFit = ROOT.TF1("gausFit", "gaus", -5, 5)
-hist.Fit(gausFit, "R")
-
-canvas.Draw()
 input("Enter to exit...")
 
 file.Close()
