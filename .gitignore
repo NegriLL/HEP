@@ -4,4 +4,6 @@
 *.ps
 *~
 *.root
+*.png
 */HDECAY/
+*HDECAY
