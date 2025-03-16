@@ -1,0 +1,14 @@
+HDecay Exercise
+> HDecay installation was not included to save space
+> br.sm2 has the results from the run
+> to generate the graph run
+    python plotHDECAY.py
+    
+FeynHiggs Exercise
+> The makefile assumes feynhiggs is in its latest version (2.19.0) and is
+>  installed in the home directory
+> run the following commands
+    make
+    ./FHWidths
+    python plotFeynHiggs.py
+> This wiill generate the graphs
