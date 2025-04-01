@@ -1,0 +1,6 @@
+The detector is comprised of a series of lead absorbers filled with liquid argon
+between them. The default matterial is called "Galactic" and is set to simulate
+the vaccuum we would find in space.
+
+The geometry of the detector can be described as 10 rectangular layers. Each
+layer has the lead absorber and a gap of "galactic"
