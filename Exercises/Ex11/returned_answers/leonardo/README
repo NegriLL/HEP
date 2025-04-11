@@ -1,3 +1,5 @@
 Usage
  - make
  - make.py
+ 
+Requires DYJetsToLL.root to be in the folder
