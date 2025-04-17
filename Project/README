@@ -1,0 +1,23 @@
+Instructions for running the files and the answers of each exercise
+
+# Part 1
+Execute the following commands
+    make
+    tcsh job
+output: a.out, MuonTau.root.
+a.out contains a summary with the trigger efficiency of the signal
+MuonTau.root contains the transverse momentum, phi and eta of the trigger events.
+   
+The approximate signal efficiency is 29%. The cross section was calculated in the following paper: https://cds.cern.ch/record/2868001/files/SMP-22-017-pas.pdf
+We should expect the total cross section to be ~2.010. Considering the efficiency of ~29% we have a 0.58% chance of finding a Z-boson. Our error will decrease according to 1/sqrt(NEvents).
+With all of this in mind, I believe a reasonable amount of simulated events should be in the range of ~1e6.  
+
+# Part 2
+
+
+
+
+
+# Part 3
+The experiment is based on theoretical data and the same tools used at CERN. Therefore, we should expect the results to be reproduceable and firmly supported by our current understanding of physics. However, I do not believe this would be enough to cast away all doubt that the data is correct.
+The most obvious path to improve the study is to compare the results with data captured by the LHC and see if it matches the experimental results. Furthermore, we could use more tools, such as GEANT, to simulate the colliders and detectors. This would more accurately predict the received signal compared to our simple gaussian smear. A study such as this could be used as a blueprint to begin the search for the Z-boson, but I believe we should be much more careful with fundamental measurements such as these.

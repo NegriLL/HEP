@@ -4,7 +4,9 @@ PYTHIA8_DIR = $(basename $(PYTHIA8_TGZ))
 
 OPT = -g -Wall
 INC = -I$(PYTHIA8_DIR)/include
-LIBS = -L$(PYTHIA8_DIR)/lib -lpythia8 -ldl
+LIBSPY = -L$(PYTHIA8_DIR)/lib -lpythia8 -ldl
+LIBSRT = $(shell root-config --libs)
+CXXFLAGS = $(shell root-config --cflags)
 
 all: $(PYTHIA8_DIR)
 	$(MAKE) main
@@ -15,7 +17,7 @@ $(PYTHIA8_DIR):
 	cd $(PYTHIA8_DIR) && ./configure && make
 
 main: main.cc
-	$(CXX) $(OPT) $(INC) main.cc $(LIBS) -o main
+	$(CXX) $(CXXFLAGS) $(OPT) $(INC) main.cc $(LIBSPY) $(shell root-config --libs) -o main
 
 files = $(wildcard *~ pythia*)
 clean:
