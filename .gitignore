@@ -9,3 +9,7 @@
 *HDECAY
 */FeynHiggs/
 *FeynHiggs
+*/pythia8311/
+*.out
+*main
+*.tgz
