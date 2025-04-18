@@ -8,7 +8,11 @@ int main() {
     // Starting pythia
     Pythia pythia;
     pythia.readString("Beams:eCM = 13600.");
-    pythia.readString("Top:all = on");
+    //pythia.readString("Top:all = on");
+    pythia.readString("WeakSingleBoson:ffbar2gmz = on"); // Weak processes
+    pythia.readString("Top:gg2ttbar = on"); // Background events
+    pythia.readString("Top:qqbar2ttbar = on");
+    pythia.readString("Top:ffbar2ttbar(s:gmz) = on");
     pythia.init();
     
     // Creating root files and tree
