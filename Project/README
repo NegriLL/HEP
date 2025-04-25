@@ -1,16 +1,21 @@
 Instructions for running the files and the answers of each exercise
 
-# Part 1
 Execute the following commands
     make
     tcsh job
-output: a.out, MuonTau.root.
+    python3 analysis.py
+output: a.out, MuonTau.root, Mass Distribution.png.
 a.out contains a summary with the trigger efficiency of the signal
 MuonTau.root contains the transverse momentum, phi and eta of the trigger events.
-   
-The approximate signal efficiency is 29%. The cross section was calculated in the following paper: https://cds.cern.ch/record/2868001/files/SMP-22-017-pas.pdf
-We should expect the total cross section to be ~2.010. Considering the efficiency of ~29% we have a 0.58% chance of finding a Z-boson. Our error will decrease according to 1/sqrt(NEvents).
-With all of this in mind, I believe a reasonable amount of simulated events should be in the range of ~1e6.  
+Mass Distribution.png contains the invariant mass distributions of the signal + background
+
+# Part 1
+The production cross section of the Z boson is approximately 2.010nb for
+a muon muon decay
+(source https://cds.cern.ch/record/2868001/files/SMP-22-017-pas.pdf)
+The inelastic cross section of the LHC is approximately 72 mb = 72e6 nb
+(source https://cds.cern.ch/record/2286458/files/epjconf_ismd2017_03007.pdf)
+A quick calculation 72e6nb/2nb = 36e6 collisions.
 
 # Part 2
 

@@ -1,4 +1,7 @@
 #!/bin/tcsh
 setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:$PWD/pythia8311/lib
 setenv PYTHIA8DATA $PWD/pythia8311/share/Pythia8/xmldoc
-./main >& a.out
+./main 1000000 signal >& signal.out
+mv signal signal.root
+./main 1000000 noise >& noise.out
+mv noise noise.root
