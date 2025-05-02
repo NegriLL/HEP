@@ -1,5 +1,5 @@
 #!/bin/bash
-export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:$PWD/pythia8311/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$PWD/pythia8311/lib
 export PYTHIA8DATA=$PWD/pythia8311/share/Pythia8/xmldoc
 ./main 1000000 signal >& GenData/signal.out &
 ./main 1000000 noise >& GenData/noise.out
