@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
         pythia.readString("Top:qqbar2ttbar = on");
     } else {
         cout << "Invalid Command" << endl;
-        return;
+        return 0;
     }
     pythia.init();
     
