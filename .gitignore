@@ -20,6 +20,8 @@
 !*Project/GenData/noise.root
 !*Project/GenData/signal.root
 !*Project/Graphs/Mass Distribution.png
+!*Project/Graphs/Mass Distribution.pdf
+!*Project/Graphs/Mass Distribution.C
 *.key
 *.DS_Store
 *.dSYM/

@@ -97,7 +97,7 @@ def main():
             hist.Fill(mass, noiseWeight)
             histNoise.Fill(mass, noiseWeight)
     
-    c1 = ROOT.TCanvas("Canvas")
+    c1 = ROOT.TCanvas("c", "Canvas", 1600, 1200)
     # Fitting Signal + Background and drawing
     gaus = ROOT.TF1("gaus", "gaus", 85, 100)
     gaus.SetLineColor(ROOT.kBlue)
@@ -112,20 +112,13 @@ def main():
     gausNoise.SetLineWidth(3)
     histNoise.Fit(gausNoise, "RQ+")
     
-    hist.Draw("HIST")
-    gaus.Draw("SAME")
-    gausNoise.Draw("SAME")
-    
-    legend = ROOT.TLegend(0.15, 0.7, 0.4, 0.85)
-    legend.AddEntry(gaus, "Signal Fit", "l")
-    legend.AddEntry(gausNoise, "Background Fit", "l")
-    legend.Draw()
-    
-    c1.SaveAs("Graphs/Mass Distribution.png")
-    
     # Integrating Events
     signalCount = gaus.Integral(89, 93)
     noiseCount = gausNoise.Integral(0, 180)
+    
+    # Adding labels
+    hist.GetXaxis().SetTitle("Invariant Mass (GeV)")
+    hist.GetYaxis().SetTitle("Events (fb)")
     
     # Statistical significance
     print()
@@ -133,6 +126,25 @@ def main():
     print("Signal Events: {:.3f}".format(signalCount))
     print("Noise Events: {:.3f}".format(noiseCount))
     print("Statistical significance is: {:.3f}".format(sigma))
+    
+    hist.Draw("HIST")
+    gaus.Draw("SAME")
+    gausNoise.Draw("SAME")
+    
+    # Drawing legend
+    legend = ROOT.TLegend(0.15, 0.7, 0.4, 0.85)
+    legend.AddEntry(gaus, "Signal Fit", "l")
+    legend.AddEntry(gausNoise, "Background Fit", "l")
+    legend.Draw()
+    
+    # Adding stats to histogrma
+    legend.AddEntry(0, "Signal    {:.3f}".format(signalCount), "")
+    legend.AddEntry(0, "Noise    {:.3f}".format(noiseCount), "")
+    legend.AddEntry(0, "Sigma    {:.3f}".format(sigma), "")
+    
+    c1.SaveAs("Graphs/Mass Distribution.png")
+    c1.SaveAs("Graphs/Mass Distribution.C")
+    c1.SaveAs("Graphs/Mass Distribution.pdf")
 
 main()
 
