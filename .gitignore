@@ -15,3 +15,11 @@
 *.tgz
 *signal
 /Project (copy)/
+!*Project/GenData/noise.out
+!*Project/GenData/signal.out
+!*Project/GenData/noise.root
+!*Project/GenData/signal.root
+!*Project/Graphs/Mass Distribution.png
+*.key
+*.DS_Store
+*.dSYM/
