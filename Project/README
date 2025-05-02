@@ -41,7 +41,7 @@ Source: https://twiki.cern.ch/twiki/bin/view/CMSPublic/LumiPublicResults#2024_pr
 # Part 3
 The data is very clear about the existence of a peak at 91 GeV, and that is the prediction of the standard model. Considering that we have reached a very high sigma, we can confidently say that the measurement has statistical significance. I can certainly convince myself that, if this were real data, I would have found evidence for the existence of the Z Boson as predicted by the Standard Model. Regardless, I would still prefer to do further, more accurate analysis of the data to make sure there is absolutely no ambiguity in the results.
 
-We could find a few ways to improve the experiment. We can always collect more data to refine our results. We could account for further corrections in the muon path such as photon emmission. It would be good to simulate the detectors more accurately, with proper errors. It would also be important to propagate those errors to our final data, so we can get a better idea of the mass range we are working with.
+We could find a few ways to improve the experiment. We can always collect more data to refine our results. We could account for further corrections in the muon path such as photon emmission. It would be good to simulate the detectors more accurately using GEANT for example, and add physically simulated errors. It would also be important to propagate those errors to our final data, so we can get a better idea of the mass range we are working with.
 Lastly, it would be important to simulate other events that generate muons in the background besides ttbar. That way we can make sure that our signal efficiency in our simulation is not a fluke.
 
 # Explaining non trivial choices
