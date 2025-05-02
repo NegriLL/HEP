@@ -28,7 +28,6 @@ double pionMomenta(Event event, int index, double dR){
 }
 
 int main(int argc, char** argv) { 
-
     int NEV = atoi(argv[1]);
     
     // Starting pythia
@@ -42,6 +41,7 @@ int main(int argc, char** argv) {
         pythia.readString("Top:qqbar2ttbar = on");
     } else {
         cout << "Invalid Command" << endl;
+        return;
     }
     pythia.init();
     
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
                 muonPt = pythia.event[i].pT();
                 muonTheta = pythia.event[i].theta();
                 muonPhi = pythia.event[i].phi() ;
-                muonE = pythia.event[i].eT();
+                muonE = pythia.event[i].e();
                 muonEta = pythia.event[i].eta();
                 // Counting Signal
                 NSignal++;
