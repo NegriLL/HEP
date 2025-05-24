@@ -12,7 +12,9 @@ outputs:
         noise.root : Saved muon events for the ttbar process
     Graphs:
         Mass Distribution.png : Plotted and fitted mass distributions
-    Terminal:
+        Mass Distribution.C : Plotted and fitted mass distributions
+        Mass Distribution.pdf : Plotted and fitted mass distributions
+    Terminal (printed):
         Signal significance calculation
 
 # Part 1
