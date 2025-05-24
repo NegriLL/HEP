@@ -44,6 +44,35 @@ The data is very clear about the existence of a peak at 91 GeV, and that is the 
 We could find a few ways to improve the experiment. We can always collect more data to refine our results. We could account for further corrections in the muon path such as photon emmission. It would be good to simulate the detectors more accurately using GEANT for example, and add physically simulated errors. It would also be important to propagate those errors to our final data, so we can get a better idea of the mass range we are working with.
 Lastly, it would be important to simulate other events that generate muons in the background besides ttbar. That way we can make sure that our signal efficiency in our simulation is not a fluke.
 
-# Explaining non trivial choices
+# Program Execution
+## Make
+the make command installs pythia in the correct directory in case it is not yet there, and then compiles the program main.cc
+
+## Job
+The test.job file does the rest of the work of the simulation. It gives the program the number of pythia events we will simulate and whether we are creating a signal or a noise run. I separated signal and background runs to make it easier to choose between them, and that way I can also run the program in parallel. Once completed, the ROOT data is renamed and moved to the directory GenData.
+
+## main.cc
+Since both simluations deal with muon pairs, they can run basically the same way other than the event generation parameters. I chose not to force decay with pythia.
+Once all the branches and variables are created, the main simulation loop starts. The main loop of the program checks each particle individually. A particle must get through the following conditions to be selected:
+- Is a muon
+- transverse momentum > 20
+- pseudorapidity < 2.1
+- Is a final state particle
+If these conditions are satisfied, the particle moves on. We save the variables we need for the 4 momenta into branches. Finally, we calculate the nearby pion momenta using the pionMomenta function. This function iterates through the list of particles, when it finds a pion within a certain dR of our muon (calculated by the distance function), it adds the momentum to a variable. Once all particles have been iterated through, we return the final momentum variable and save that to the pionP branch.
+After all events are completed, we print out a summary including:
+- Number of events generated
+- Number of signal muons
+- Signal efficiency
+- Total cross section divided by the number of events in fb (we will use this later as the weight for the events)
+
+## analysis.py
+Once we are done with the simulation, we can run the analysis to generate our figures. The python code uses the function getEvents to iterate through the ROOT tree, first accessing the variables in the branches. It creates a 4-vector of the muon candidate using the smearedVector function, which also adds the gaussian smear to the values.
+The program then checks whether our muon momenta and our nearby pion momenta are within our cutoffs. I mistakenly named the variable that determines the maximum pion momenta as maxPionCharge, but this is just a naming error. If our candidate passes the criteria, we add our muon to a dictionary. This dictionary uses the event number as the key and the muon 4-vector as the value.
+We return this dictionary, using one for signal muons and another for background. We check all the entries and only use the ones that have exactly 2 muons. We add these muons 4 vectors and get our invariant mass.
+The plots are handled by ROOT. The weight we calculated in the main.cc and saved in our files is found using a regular expression, and then used for our weight. We only have one value for signal and one for the background, so including it into the histogram is easily handled by ROOT.
+We also integrate over our signal and background to get the integrated luminosity and calculate the significance. The plots are generated and saved in the Graphs folder.
+
+# Explaining non trivial choicea
+I have included the data files and graphs in this folder. They ended up not being so large, but I understand that this is not the standard way of doing things. I've done this in case you want to run the python analysis without having to do the simulation yourself, which can take a long time with the 1000000 events I generated (if you want to genrate fewer events, that's possible by editing the test.job file). Running make also requires the installation of pythia in the folder, which adds more time.
 I chose to create two root files because the number of signal and background events might be unequal. I could have made an additional boolean branch to distinguish events and save them in a single Tree, but I thought that it would be better to do things separately and run them concurrently through the command line rather than using a mutex.
-The change from tcsh to bash in the test.job file happened because ROOT was not working properly on my Clubbi Linux machine. Invoking the ROOT::Fit() function would give me a segmentation fault. I could not find the root cause (pun intended), so I installed the dependencies on my personal computer where bash was more frictionless to use.
+The change from tcsh to bash in the test.job file happened because ROOT was not working properly on my Clubbi Linux machine. Invoking the ROOT::Fit() function would give me a segmentation fault in C++ and python. I could not find the root cause (pun intended), so I installed the dependencies on my personal computer where bash was more frictionless to use.
